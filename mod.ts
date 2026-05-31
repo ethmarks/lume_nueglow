@@ -48,3 +48,160 @@ export interface Options {
    */
   mark?: boolean;
 }
+
+/**
+ * Sourced from https://nuejs.org/glow-demo/glow.css.
+ *
+ * Pieces of an alternate version are available at https://github.com/nuejs/nue/blob/master/packages/nueglow/css/syntax.css and https://github.com/nuejs/nue/blob/master/packages/nueglow/css/markers.css. However, they lack the <ins> and <del> ::before tags and they come with hardcoded default values, which would conflict with the 'min' theme.
+ */
+const GLOW_SYNTAX_CSS = `
+  [glow] {
+    color:var(--glow-base-color,#555);
+    counter-reset:line-counter 0;
+    font-family:monospace;
+    line-height:1.7
+  }
+  [glow] code * {
+    font-weight:400;
+    font-style:inherit;
+    text-decoration:inherit
+  }
+  [glow] b {
+    color:var(--glow-primary-color,#0068d6)
+  }
+  [glow] em {
+    color:var(--glow-secondary-color,#bd2864)
+  }
+  [glow] strong {
+    color:var(--glow-accent-color,#7820bc)
+  }
+  [glow] i {
+    color:var(--glow-char-color,#8e989c)
+  }
+  [glow] u {
+    text-decoration:underline wavy var(--glow-error-color,red);
+    text-underline-offset:.5em;
+    text-decoration-thickness:.15em
+  }
+  [glow] sup {
+    color:var(--glow-comment-color,#9aa1a3);
+    font-size:inherit;
+    vertical-align:inherit;
+    font-style:italic
+  }
+  [glow] label {
+    color:var(--glow-special-color,#7820bc);
+    font-weight:700
+  }
+  [glow] mark {
+    color:unset;
+    background-color:var(--glow-selected-color,#51c6fe29);
+    border-radius:.2em;
+    margin:-.3em -.4em;
+    padding:.3em .4em
+  }
+  [glow] span {
+    counter-increment:line-counter 1
+  }
+  [glow] span:before {
+    color:var(--glow-counter-color,#bbb);
+    content:counter(line-counter);
+    text-align:right;
+    width:2.5em;
+    margin-right:1em;
+    padding-right:1em;
+    display:inline-block
+  }
+  [glow] span:has(u):before {
+    background-color:var(--glow-error-color,red);
+    color:#fff;
+    border-radius:.2em;
+    font-weight:700
+  }
+  [glow] {
+    --glow-line-color:50,180,250;
+    --glow-del-color:250,110,130;
+    --glow-ins-color:50,210,190;
+    --glow-line-opacity:.15;
+    --glow-padding:1em
+  }
+  [glow] ins,
+  [glow] del,
+  [glow] dfn {
+    min-width:calc(100% + calc(var(--glow-padding)*2));
+    border-left:.2em solid #fff;
+    width:100%;
+    display:inline-block;
+    position:relative
+  }
+  :is([glow] ins,
+  [glow] del,
+  [glow] dfn) :first-child {
+    margin-left:-.2em
+  }
+  :is([glow] ins,
+  [glow] del,
+  [glow] dfn):before {
+    left:calc(var(--glow-padding) + 2em);
+    position:absolute
+  }
+  span :is([glow] ins,
+  [glow] del,
+  [glow] dfn) {
+    margin-left:calc(-3.7em - var(--glow-padding));
+    padding-left:calc(3.5em + var(--glow-padding))
+  }
+  [glow] ins {
+    border-color:rgb(var(--glow-ins-color));
+    background-color:rgba(var(--glow-ins-color),var(--glow-line-opacity))
+  }
+  [glow] ins:before {
+    content:"+";
+    color:rgb(var(--glow-ins-color))
+  }
+  [glow] del {
+    border-color:rgb(var(--glow-del-color));
+    background-color:rgba(var(--glow-del-color),var(--glow-line-opacity));
+    border-radius:0
+  }
+  [glow] del:before {
+    content:"-";
+    color:rgb(var(--glow-del-color))
+  }
+  [glow] dfn {
+    border-color:rgb(var(--glow-line-color));
+    background-color:rgba(var(--glow-line-color),var(--glow-line-opacity))
+  }
+`;
+
+const GLOW_THEMES = {
+  /** https://nuejs.org/glow-demo/dark.css */
+  dark: `[glow] {
+  --glow-bg-color: #111729;
+  --glow-font-color: #e2e8f0;
+  --glow-primary-color: #7dd3fc;
+  --glow-secondary-color: #f472b6;
+  --glow-accent-color: #419fff;
+  --glow-special-color: #fff;
+  --glow-base-color: #a2aab1;
+  --glow-char-color: #64748b;
+  --glow-comment-color: #4e5d61;
+  --glow-counter-color: #475569;
+  --glow-selected-color: #2dd4bf26
+}`,
+  /** https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css */
+  light: `[glow] {
+  --glow-bg-color: #f9f9f9;
+  --glow-base-color: #555;
+  --glow-primary-color: #0068d6;
+  --glow-secondary-color: #bd2864;
+  --glow-accent-color: #456aff;
+  --glow-special-color: #7820bc;
+  --glow-char-color: #8e989c;
+  --glow-comment-color: #9aa1a3;
+  --glow-counter-color: #bbb;
+  --glow-marked-color: #51c6fe29;
+}`,
+  /** Empty string because we don't append any theming to the syntax styles. */
+  min: "",
+};
