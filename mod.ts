@@ -1,5 +1,5 @@
 /**
- * lume_nueglow is a Lume plugin that adds syntax highlighting with Nueglow
+ * lume_nueglow is a Lume plugin that adds syntax highlighting with Nueglow.
  */
 import { glow } from "npm:nue-glow@0.2.5";
 import type { default as Site, Plugin } from "lume/core/site.ts";
@@ -66,7 +66,12 @@ export interface Options {
 /**
  * Sourced from https://nuejs.org/glow-demo/glow.css.
  *
- * Pieces of an alternate version are available at https://github.com/nuejs/nue/blob/master/packages/nueglow/css/syntax.css and https://github.com/nuejs/nue/blob/master/packages/nueglow/css/markers.css. However, they lack the ::before styles for <ins> and <del> tags, and they come with hardcoded default values, which would conflict with the 'min' theme.
+ * Pieces of an alternate version are available at
+ * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/syntax.css and
+ * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/markers.css.
+ * However, they lack the ::before styles for <ins> and <del> tags, and they
+ * come with hardcoded default values, which would conflict with the 'min'
+ * theme.
  */
 const GLOW_SYNTAX_CSS = `
   [glow] {
@@ -224,6 +229,7 @@ const GLOW_THEMES = {
   min: "",
 };
 
+/** The default options */
 const DEFAULT_OPTIONS: Options = {
   css: "inline",
   cssPath: "/glow.css",
@@ -233,6 +239,7 @@ const DEFAULT_OPTIONS: Options = {
   numbered: false,
 };
 
+/** a Lume plugin that adds syntax highlighting with Nueglow.  */
 export default function (opt?: Options): Plugin {
   const cssMode = opt?.css ?? DEFAULT_OPTIONS.css;
   const cssPath = opt?.cssPath ?? DEFAULT_OPTIONS.cssPath;
