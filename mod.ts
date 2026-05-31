@@ -1,6 +1,9 @@
 /**
  * lume_nueglow is a Lume plugin that adds syntax highlighting with Nueglow
  */
+import { glow } from "npm:nue-glow@0.2.5";
+import type { default as Site, Plugin } from "lume/core/site.ts";
+import type { Page } from "lume/core/file.ts";
 
 /** Options that specify how to handle nueglow's CSS and how to  */
 export interface Options {
@@ -39,12 +42,23 @@ export interface Options {
   theme?: "dark" | "light" | "min";
 
   /**
+   * Whether to enable line numbering.
+   *
+   * Default is false.
+   */
+  numbered?: boolean;
+
+  /**
    * Whether to parse diff prefixes (+/-) and callouts (>) in neuglow.
+   *
+   * Default is true.
    */
   prefix?: boolean;
 
   /**
    * Whether to parse marking (•foo•) and highlighting (••foo••) in neuglow.
+   *
+   * Default is true.
    */
   mark?: boolean;
 }
@@ -52,10 +66,12 @@ export interface Options {
 /**
  * Sourced from https://nuejs.org/glow-demo/glow.css.
  *
- * Pieces of an alternate version are available at https://github.com/nuejs/nue/blob/master/packages/nueglow/css/syntax.css and https://github.com/nuejs/nue/blob/master/packages/nueglow/css/markers.css. However, they lack the <ins> and <del> ::before tags and they come with hardcoded default values, which would conflict with the 'min' theme.
+ * Pieces of an alternate version are available at https://github.com/nuejs/nue/blob/master/packages/nueglow/css/syntax.css and https://github.com/nuejs/nue/blob/master/packages/nueglow/css/markers.css. However, they lack the ::before styles for <ins> and <del> tags, and they come with hardcoded default values, which would conflict with the 'min' theme.
  */
 const GLOW_SYNTAX_CSS = `
   [glow] {
+    background-color: var(--glow-bg-color, #20293A);
+    padding: var(--glow-padding, 1.5em);
     color:var(--glow-base-color,#555);
     counter-reset:line-counter 0;
     font-family:monospace;
@@ -189,6 +205,7 @@ const GLOW_THEMES = {
   --glow-counter-color: #475569;
   --glow-selected-color: #2dd4bf26
 }`,
+
   /** https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css */
   light: `[glow] {
   --glow-bg-color: #f9f9f9;
@@ -202,6 +219,83 @@ const GLOW_THEMES = {
   --glow-counter-color: #bbb;
   --glow-marked-color: #51c6fe29;
 }`,
+
   /** Empty string because we don't append any theming to the syntax styles. */
   min: "",
 };
+
+const DEFAULT_OPTIONS: Options = {
+  css: "inline",
+  cssPath: "/glow.css",
+  theme: "dark",
+  prefix: true,
+  mark: true,
+  numbered: false,
+};
+
+export default function (opt?: Options): Plugin {
+  const cssMode = opt?.css ?? DEFAULT_OPTIONS.css;
+  const cssPath = opt?.cssPath ?? DEFAULT_OPTIONS.cssPath;
+  const theme = opt?.theme ?? DEFAULT_OPTIONS.theme;
+  const prefix = opt?.prefix ?? DEFAULT_OPTIONS.prefix;
+  const mark = opt?.mark ?? DEFAULT_OPTIONS.mark;
+  const numbered = opt?.numbered ?? DEFAULT_OPTIONS.numbered;
+
+  return (site: Site) => {
+    site.process([".html"], (pages: Page[]) => {
+      for (const page of pages) {
+        const { document } = page;
+        if (!document) continue;
+
+        const codeBlocks = document.querySelectorAll("pre > code");
+
+        codeBlocks.forEach((element) => {
+          const codeElement = element as unknown as HTMLElement;
+          const preElement = codeElement.parentElement!;
+
+          try {
+            const langClass = Array.from(codeElement.classList).find((c) =>
+              c.startsWith("language-")
+            );
+            const language = langClass?.replace("language-", "");
+
+            preElement.setAttribute("glow", "");
+            preElement.innerHTML = glow(codeElement.innerText, {
+              language,
+              prefix,
+              mark,
+              numbered,
+            });
+          } catch (error) {
+            console.warn(`[nueglow] Error in ${page.sourcePath}`, error);
+          }
+        });
+      }
+    });
+
+    const addCSS = cssMode !== "manual" && cssMode !== false;
+    if (addCSS) {
+      const cssText = GLOW_SYNTAX_CSS + GLOW_THEMES[theme ?? "min"];
+
+      if (cssMode === "file") {
+        // Put cssText in a new file at cssPath
+        site.page({
+          url: cssPath,
+          content: cssText,
+        });
+      } else if (cssMode === "inline") {
+        // Put cssText in a <style> block in the <head> of every page that uses
+        // glow.
+        site.process([".html"], (pages) => {
+          for (const page of pages) {
+            if (page.document?.querySelector("[glow]")) {
+              const style = page.document.createElement("style");
+              style.textContent = cssText;
+              page.document.head.appendChild(style);
+            }
+          }
+        });
+      }
+    }
+  };
+}
