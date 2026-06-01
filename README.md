@@ -174,3 +174,46 @@ If you choose to disable the default syntax styles (by setting the `css` option
 to `manual`), you can define your own syntax styles. A guide on how to do this
 is available
 [here](https://nuejs.org/docs/syntax-highlighting#styling-with-css).
+
+## Credits
+
+### ArnavK-09
+
+`lume_nueglow` was inspired by
+[ArnavK-09's lume_glow plugin](https://github.com/ArnavK-09/lume_glow). I
+encountered it because I was trying to add Nueglow to one of my Lume sites and
+was checking to see if any plugins already existed.
+
+However, because `lume_glow`
+[used hardcoded `githubusercontent` links](https://github.com/ArnavK-09/lume_glow/blob/main/plugin.ts#L27:L31)
+that have since stopped working, it injects every page with
+`<style>404: Not Foundpre { overflow-x: auto }</style>` and not the actual
+styles. The hardcoded links can't be configured in any way, nor can you even
+disable the `<style>` injection. I considered submitting a PR, but the plugin
+didn't seem to be actively maintained.
+
+Instead, I decided to make my own plugin, borrowing the basic structure of
+ArnavK-09's plugin but expanding it significantly. I took the opportunity to
+implement the features and configuration options that I wished the plugin had in
+the first place.
+
+### NueJS
+
+`lume_nueglow` uses the [`nue-glow`](npmjs.com/package/nue-glow) package
+developed by the NueJS team. I also used some of the styles, themes, and example
+snippets from the nueglow documentation.
+
+### Lume
+
+`lume_nueflow` imports a few types from [Lume](https://lume.land/) and uses its
+[excellent plugin system](https://lume.land/docs/advanced/plugins/).
+
+### Catpppuccin
+
+The included `catppuccin` theme was made by me, but I used the
+[Catppuccin palette](https://catppuccin.com/palette/) as reference.
+
+## License
+
+This project is under an MIT License. See [LICENSE](LICENSE) for more
+information.
