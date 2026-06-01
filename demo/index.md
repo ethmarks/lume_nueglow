@@ -38,6 +38,9 @@ If it looks like code and uses code-y word like `if` and `return`, Nueglow can
 highlight it.
 
 Here are a bunch of example snippets from different programming languages.
-Sourced from <https://github.com/uloco/syntax-highlighting-samples>.
 
 [snippets]
+
+_Snippets are from the official [Nueglow demo](https://nuejs.org/glow-demo/),
+the source of which is available here:
+<https://github.com/nuejs/nue/blob/master/packages/nueglow/test/generate.js>._
