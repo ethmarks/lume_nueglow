@@ -25,7 +25,7 @@ export default site;
 // index.vto
 <pre>
   <code class="language-js">
-function fibonacci(num) {
+function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
   return fibonacci(num - 1) + fibonacci(num - 2);
@@ -39,7 +39,7 @@ function fibonacci(num) {
 The biggest advantage of Nueglow is that it's very easy to create custom themes.
 Rather than
 [massive JSON files](https://github.com/Binaryify/OneDark-Pro/blob/master/themes/OneDark-Pro.json),
-Nueglow themes only consist of a handful of CSS custom properties:
+Nueglow themes consist of only a handful of CSS custom properties:
 
 ```css
 [glow] {
@@ -61,7 +61,7 @@ The example above is a [Catppuccin](https://catppuccin.com/)-inspired theme,
 which you can see below:
 
 ```theme-catppuccin
-function fibonacci(num) {
+function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
   return fibonacci(num - 1) + fibonacci(num - 2);
@@ -73,7 +73,7 @@ your brand color is `#8FDFD4`, then you can create a monochromatic theme that
 uses different shades of your brand color:
 
 ```theme-mint
-function fibonacci(num) {
+function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
   return fibonacci(num - 1) + fibonacci(num - 2);
@@ -83,7 +83,7 @@ function fibonacci(num) {
 Here's a theme that I created by lazily combining random pastel colors:
 
 ```theme-rainbow
-function fibonacci(num) {
+function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
   return fibonacci(num - 1) + fibonacci(num - 2);
@@ -91,6 +91,62 @@ function fibonacci(num) {
 ```
 
 _The CSS for all the themes above is available at [/themes.css](themes.css)._
+
+## Special Syntax
+
+Nueglow has some [special syntax](https://nuejs.org/docs/syntax-highlighting)
+for drawing attention to specific selections and lines.
+
+If you wrap a selection in single bullet markers (e.g. `•text•`), Nueglow will
+surround it in `<mark>` tags. For example, look `fibonacci(num - 1)` is
+highlighted in the example below.
+
+```ts
+function fibonacci(num: number): number {
+  if (num == 1) return 0;
+  if (num == 2) return 1;
+  return •fibonacci(num - 1)• + fibonacci(num - 2);
+}
+```
+
+If you wrap a selection in double bullet markers (e.g. `••text••`), Nueglow will
+wrap it in `<u>` tags. This is typically used for drawing attention to errors.
+For example, look how `num = 1` is underlined in the example below.
+
+```ts
+function fibonacci(num: number): number {
+  if (••num = 1••) return 0;
+  if (num == 2) return 1;
+  return fibonacci(num - 1) + fibonacci(num - 2);
+}
+```
+
+If you prefix a line with a greater than sign (`>`), Nueglow will wrap the whole
+line in `<dfn>` tags. For example, look how the `return` line is highlighted in
+the example below.
+
+```ts
+function fibonacci(num: number): number {
+  if (num == 1) return 0;
+  if (num == 2) return 1;
+> return fibonacci(num - 1) + fibonacci(num - 2);
+}
+```
+
+If you prefix a line with a minus sign (`-`) or plus sign (`+`), Nueglow will
+wrap the whole line in `<del>` or `<ins>` tags, respectively. For example, look
+at the diff below.
+
+```ts
+function fibonacci(num: number): number {
+  if (num == 1) return 0;
+  if (num == 2) return 1;
+- return fibonacci(num - 1) + fibonacci(num - 2);
++ const minusOneFib = fibonacci(num - 1);
++ const minusTwoFib = fibonacci(num - 2);
++ return minusOneFib + minusTwoFib;
+}
+```
 
 ## Languages
 

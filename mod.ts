@@ -80,15 +80,13 @@ export interface Options {
  * Pieces of an alternate version are available at
  * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/syntax.css and
  * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/markers.css.
- * However, they lack the ::before styles for <ins> and <del> tags, and they
- * come with hardcoded default values, which would conflict with the 'none'
- * theme.
+ * However, they lack the ::before styles for <ins> and <del> tags.
  */
 const GLOW_SYNTAX_CSS = `
   [glow] {
-    background-color: var(--glow-bg-color, #20293A);
-    padding: var(--glow-padding, 1.5em);
-    color:var(--glow-base-color,#555);
+    background-color: var(--glow-bg-color);
+    padding: var(--glow-padding);
+    color:var(--glow-base-color);
     counter-reset:line-counter 0;
     font-family:monospace;
     line-height:1.7
@@ -99,35 +97,35 @@ const GLOW_SYNTAX_CSS = `
     text-decoration:inherit
   }
   [glow] b {
-    color:var(--glow-primary-color,#0068d6)
+    color:var(--glow-primary-color)
   }
   [glow] em {
-    color:var(--glow-secondary-color,#bd2864)
+    color:var(--glow-secondary-color)
   }
   [glow] strong {
-    color:var(--glow-accent-color,#7820bc)
+    color:var(--glow-accent-color)
   }
   [glow] i {
-    color:var(--glow-char-color,#8e989c)
+    color:var(--glow-char-color)
   }
   [glow] u {
-    text-decoration:underline wavy var(--glow-error-color,red);
+    text-decoration:underline wavy var(--glow-error-color);
     text-underline-offset:.5em;
     text-decoration-thickness:.15em
   }
   [glow] sup {
-    color:var(--glow-comment-color,#9aa1a3);
+    color:var(--glow-comment-color);
     font-size:inherit;
     vertical-align:inherit;
     font-style:italic
   }
   [glow] label {
-    color:var(--glow-special-color,#7820bc);
+    color:var(--glow-special-color);
     font-weight:700
   }
   [glow] mark {
     color:unset;
-    background-color:var(--glow-selected-color,#51c6fe29);
+    background-color:var(--glow-selected-color);
     border-radius:.2em;
     margin:-.3em -.4em;
     padding:.3em .4em
@@ -136,7 +134,7 @@ const GLOW_SYNTAX_CSS = `
     counter-increment:line-counter 1
   }
   [glow] span:before {
-    color:var(--glow-counter-color,#bbb);
+    color:var(--glow-counter-color);
     content:counter(line-counter);
     text-align:right;
     width:2.5em;
@@ -145,7 +143,7 @@ const GLOW_SYNTAX_CSS = `
     display:inline-block
   }
   [glow] span:has(u):before {
-    background-color:var(--glow-error-color,red);
+    background-color:var(--glow-error-color);
     color:#fff;
     border-radius:.2em;
     font-weight:700
@@ -219,11 +217,12 @@ const GLOW_THEMES = {
   --glow-secondary-color: #f472b6;
   --glow-accent-color: #419fff;
   --glow-special-color: #fff;
+  --glow-error-color: red;
   --glow-base-color: #a2aab1;
   --glow-char-color: #64748b;
   --glow-comment-color: #4e5d61;
   --glow-counter-color: #475569;
-  --glow-selected-color: #2dd4bf26
+  --glow-selected-color: #2dd4bf26;
 }`,
 
   /** https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css */
@@ -234,6 +233,7 @@ const GLOW_THEMES = {
   --glow-secondary-color: #bd2864;
   --glow-accent-color: #456aff;
   --glow-special-color: #7820bc;
+  --glow-error-color: red;
   --glow-char-color: #8e989c;
   --glow-comment-color: #9aa1a3;
   --glow-counter-color: #bbb;
@@ -248,6 +248,7 @@ const GLOW_THEMES = {
     --glow-secondary-color: #fab387;
     --glow-accent-color: #a6e3a1;
     --glow-special-color: #f5c2e7;
+    --glow-error-color: red;
     --glow-base-color: #bac2de;
     --glow-char-color: #cba6f7;
     --glow-comment-color: #6c7086;
