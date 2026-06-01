@@ -1,6 +1,6 @@
 {
   "name": "lume_nueglow",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "exports": "./mod.ts",
   "license": "MIT",
   "imports": {
