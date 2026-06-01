@@ -706,3 +706,28 @@ export const snippets = [
   { title: "ZIG", code: ZIG, lang: "zig" },
   { title: "YAML", code: YAML, lang: "yaml" },
 ];
+
+function escapeHTML(str: string) {
+  if (!str) return "";
+  return String(str).replace(/[&<>'"]/g, (tag) => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    "'": "&#39;",
+    '"': "&quot;",
+  }[tag] || tag));
+}
+
+const snippetHTML = snippets.map((snippet) =>
+  `<details><summary>${snippet.title}</summary><pre lang="${snippet.lang}"><code>${
+    escapeHTML(snippet.code)
+  }</code></pre></details>`
+);
+
+export const content = `
+  <!-- BEGIN SNIPPETS -->
+
+  ${snippetHTML.join("")}
+
+  <!-- END SNIPPETS -->
+`;
