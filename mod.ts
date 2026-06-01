@@ -33,6 +33,13 @@ export interface Options {
   cssPath?: string;
 
   /**
+   * Whether to minify the CSS.
+   *
+   * Default is true.
+   */
+  minifyCSS?: boolean;
+
+  /**
    * The theme of the CSS.
    *
    * * 'dark': A dark theme sourced from https://nuejs.org/glow-demo/dark.css.
@@ -195,6 +202,10 @@ const GLOW_SYNTAX_CSS = `
   }
 `;
 
+/**
+ * Themes that specify values for each of the the CSS Custom Properties that
+ * Glow uses.
+ */
 const GLOW_THEMES = {
   /** https://nuejs.org/glow-demo/dark.css */
   dark: `[glow] {
@@ -233,16 +244,36 @@ const GLOW_THEMES = {
 const DEFAULT_OPTIONS: Options = {
   css: "inline",
   cssPath: "/glow.css",
+  minifyCSS: true,
   theme: "dark",
   prefix: true,
   mark: true,
   numbered: false,
 };
 
+/**
+ * Crudely minify CSS using regexes.
+ *
+ * This probably doesn't work in general, but because it'll only ever process
+ * GLOW_SYNTAX_CSS and GLOW_THEMES, it should be fine.
+ *
+ * I considered using an actual minifier (e.g. lightning-css), but it would
+ * just introduce complexity and dependencies for minimal (ba-dum-tss) benefit.
+ */
+function crudeMinify(text: string) {
+  return text
+    .replace(/\/\*[\s\S]*?\*\//g, "") // Remove comments
+    .replace(/\s+/g, " ") // Single spaces
+    .replace(/\s*([\{};:>+,])\s*/g, "$1") // Spaces around symbols
+    .replace(/;(?=})/g, "") // Last semicolon
+    .trim(); // Clean ends
+}
+
 /** a Lume plugin that adds syntax highlighting with Nueglow.  */
 export default function (opt?: Options): Plugin {
   const cssMode = opt?.css ?? DEFAULT_OPTIONS.css;
   const cssPath = opt?.cssPath ?? DEFAULT_OPTIONS.cssPath;
+  const minifyCSS = opt?.minifyCSS ?? DEFAULT_OPTIONS.minifyCSS;
   const theme = opt?.theme ?? DEFAULT_OPTIONS.theme;
   const prefix = opt?.prefix ?? DEFAULT_OPTIONS.prefix;
   const mark = opt?.mark ?? DEFAULT_OPTIONS.mark;
@@ -282,7 +313,11 @@ export default function (opt?: Options): Plugin {
 
     const addCSS = cssMode !== "manual" && cssMode !== false;
     if (addCSS) {
-      const cssText = GLOW_SYNTAX_CSS + GLOW_THEMES[theme ?? "min"];
+      let cssText = GLOW_SYNTAX_CSS + GLOW_THEMES[theme ?? "min"];
+
+      if (minifyCSS) {
+        cssText = crudeMinify(cssText);
+      }
 
       if (cssMode === "file") {
         // Put cssText in a new file at cssPath
