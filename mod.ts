@@ -44,9 +44,9 @@ export interface Options {
    *
    * * 'dark': A dark theme sourced from https://nuejs.org/glow-demo/dark.css.
    * * 'light': A light theme sourced from https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css.
-   * * 'min': No theme.
+   * * 'none': No theme.
    */
-  theme?: "dark" | "light" | "min";
+  theme?: "dark" | "light" | "none";
 
   /**
    * Whether to enable line numbering.
@@ -77,7 +77,7 @@ export interface Options {
  * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/syntax.css and
  * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/markers.css.
  * However, they lack the ::before styles for <ins> and <del> tags, and they
- * come with hardcoded default values, which would conflict with the 'min'
+ * come with hardcoded default values, which would conflict with the 'none'
  * theme.
  */
 const GLOW_SYNTAX_CSS = `
@@ -237,7 +237,7 @@ const GLOW_THEMES = {
 }`,
 
   /** Empty string because we don't append any theming to the syntax styles. */
-  min: "",
+  none: "",
 };
 
 /** The default options */
@@ -313,7 +313,7 @@ export default function (opt?: Options): Plugin {
 
     const addCSS = cssMode !== "manual" && cssMode !== false;
     if (addCSS) {
-      let cssText = GLOW_SYNTAX_CSS + GLOW_THEMES[theme ?? "min"];
+      let cssText = GLOW_SYNTAX_CSS + GLOW_THEMES[theme ?? "none"];
 
       if (minifyCSS) {
         cssText = crudeMinify(cssText);

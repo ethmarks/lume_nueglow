@@ -83,6 +83,10 @@ p > code {
     border-radius: 0.5rem;
 }
 
+.mint {
+    color: #8fdfd4;
+}
+
 blockquote {
     border-left: 2px solid #ccc;
     padding-left: 1.5rem;
