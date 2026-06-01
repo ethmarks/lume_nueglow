@@ -1,6 +1,7 @@
 # lume_nueglow
 
-Lume plugin that adds syntax highlighting with Nueglow
+This is a [Lume](https://lume.land) plugin to add support for
+[Nueglow](https://nuejs.org/docs/nueglow).
 
 ## Quickstart
 
@@ -20,7 +21,7 @@ export default site;
 <!-- index.vto -->
 <p>Rendered Output:</p>
 <pre>
-  <code class="language-js">
+  <code class="language-ts">
 function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
@@ -30,4 +31,146 @@ function fibonacci(num: number): number {
 </pre>
 ```
 
-![Screenshot of a Javascript fibonacci function highlighted with a dark theme](./.github/quickstart_screenshot.png)
+![Screenshot of a Javascript fibonacci function highlighted with a dark theme with the text 'Rendered Output:' above](./.github/quickstart_screenshot.png)
+
+## Options
+
+`lume_nueglow` is highly configurable. You can configure how the CSS is handled,
+what theme (if any) to use, and how much of Nueglow's
+[special syntax](https://nuejs.org/docs/syntax-highlighting) to enable.
+
+```ts
+import lume from "lume/mod.ts";
+import {
+  default as nueglow,
+  type Options as NueglowOptions,
+} from "https://cdn.jsdelivr.net/gh/ethmarks/lume_nueglow/mod.ts";
+
+const opt: NueglowOptions = {
+  /**
+   * The CSS output mode.
+   *
+   * * 'inline': Directly injects the nueglow styles into a <style> block in
+   * the <head> of every page that uses nueglow.
+   * * 'file': Writes the nueglow styles to a new file based on the 'cssPath'
+   * plugin option. If you choose this option, remember that _you_, the plugin
+   * user, are responsible for ensuring that every page that uses nueglow
+   * imports this file.
+   * * 'manual': Disables automatic CSS output. This lets you set your own
+   * styles.
+   * * false: Alias for 'manual'.
+   *
+   * Default is 'inline' to make the plugin plug-and-play, but I recommend
+   * setting it to 'file' or 'manual' for performance and customizability.
+   */
+  css: "file",
+
+  /**
+   * The path to output the CSS file to if CSS output mode is 'file'.
+   *
+   * Default is '/glow.css'.
+   */
+  cssPath: "glow.css",
+
+  /**
+   * Whether to minify the CSS.
+   *
+   * Default is true.
+   */
+  minifyCSS: true,
+
+  /**
+   * The theme of the CSS.
+   *
+   * * 'dark': A dark theme sourced from
+   * https://nuejs.org/glow-demo/dark.css.
+   * * 'light': A light theme sourced from
+   * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css.
+   * * 'catppuccin': A dark theme made by me based on
+   * https://catppuccin.com/palette/.
+   * * 'none': No theme.
+   */
+  theme: "dark",
+
+  /**
+   * Whether to enable line numbering.
+   *
+   * Default is false.
+   */
+  numbered: false,
+
+  /**
+   * Whether to parse diff prefixes (+/-) and callouts (>) in nueglow.
+   *
+   * Default is true.
+   */
+  prefix: true,
+
+  /**
+   * Whether to parse marking (•foo•) and highlighting (••foo••) in nueglow.
+   *
+   * Default is true.
+   */
+  mark: true,
+};
+
+site.use(nueglow(opt));
+
+export default site;
+```
+
+## Themes
+
+Unlike other code highlighters such as [Shiki](https://shiki.style/themes) which
+use
+[massive JSON files](https://github.com/shikijs/textmate-grammars-themes/blob/main/packages/tm-themes/themes/one-dark-pro.json),
+Nueglow uses a classless design system which makes it extremely easy to style.
+
+### Included Themes
+
+`lume_nueglow` comes with a few themes by default, which you can select via the
+`theme` option.
+
+Dark:
+
+![Screenshot of a Javascript fibonacci function highlighted with a dark theme](./.github/dark.png)
+
+Light:
+
+![Screenshot of a Javascript fibonacci function highlighted with a light theme](./.github/light.png)
+
+Catppuccin:
+
+![Screenshot of a Javascript fibonacci function highlighted with a catppuccin theme](./.github/catppuccin.png)
+
+### Custom Themes
+
+Theming the default syntax styles (which are injected or supplied when the `css`
+option is set to `inline` or `file`) is simply a matter of adjusting a handful
+of CSS custom properties.
+
+For example, here is the Catppuccin theme in its entirety:
+
+```css
+[glow] {
+  --glow-bg-color: #1e1e2e;
+  --glow-font-color: #cdd6f4;
+  --glow-primary-color: #89b4fa;
+  --glow-secondary-color: #fab387;
+  --glow-accent-color: #a6e3a1;
+  --glow-special-color: #f5c2e7;
+  --glow-error-color: red;
+  --glow-base-color: #bac2de;
+  --glow-char-color: #cba6f7;
+  --glow-comment-color: #6c7086;
+  --glow-counter-color: #f38ba8;
+  --glow-selected-color: #585b7040;
+}
+```
+
+### Custom Styles
+
+If you choose to disable the default syntax styles (by setting the `css` option
+to `manual`), you can define your own syntax styles. A guide on how to do this
+is available
+[here](https://nuejs.org/docs/syntax-highlighting#styling-with-css).

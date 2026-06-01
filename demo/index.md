@@ -24,7 +24,7 @@ export default site;
 ```html
 // index.vto
 <pre>
-  <code class="language-js">
+  <code class="language-ts">
 function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
@@ -38,7 +38,7 @@ function fibonacci(num: number): number {
 
 The biggest advantage of Nueglow is that it's very easy to create custom themes.
 Rather than
-[massive JSON files](https://github.com/Binaryify/OneDark-Pro/blob/master/themes/OneDark-Pro.json),
+[massive JSON files](https://github.com/shikijs/textmate-grammars-themes/blob/main/packages/tm-themes/themes/one-dark-pro.json),
 Nueglow themes consist of only a handful of CSS custom properties:
 
 ```css
