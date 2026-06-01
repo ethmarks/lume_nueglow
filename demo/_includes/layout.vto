@@ -13,7 +13,7 @@
     <main>
         {{ content
         |> replaceAll("[snippets]", await comp.snippets() )
-        |> replaceAll("[mint]", '<span class="mint">⬤</span><code class="mint">#8FDFD4</code>' )
+        |> replaceAll("<code>#8FDFD4</code>", '<span class="mint">⬤</span><code class="mint">#8FDFD4</code>' )
         }}
     </main>
   </body>

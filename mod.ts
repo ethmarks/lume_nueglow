@@ -42,11 +42,15 @@ export interface Options {
   /**
    * The theme of the CSS.
    *
-   * * 'dark': A dark theme sourced from https://nuejs.org/glow-demo/dark.css.
-   * * 'light': A light theme sourced from https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css.
+   * * 'dark': A dark theme sourced from
+   * https://nuejs.org/glow-demo/dark.css.
+   * * 'light': A light theme sourced from
+   * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css.
+   * * 'catppuccin': A dark theme made by me based on
+   * https://catppuccin.com/palette/.
    * * 'none': No theme.
    */
-  theme?: "dark" | "light" | "none";
+  theme?: "dark" | "light" | "catppuccin" | "none";
 
   /**
    * Whether to enable line numbering.
@@ -234,6 +238,21 @@ const GLOW_THEMES = {
   --glow-comment-color: #9aa1a3;
   --glow-counter-color: #bbb;
   --glow-marked-color: #51c6fe29;
+}`,
+
+  /** Made by me based on https://catppuccin.com/palette/ */
+  catppuccin: `[glow] {
+    --glow-bg-color: #1e1e2e;
+    --glow-font-color: #cdd6f4;
+    --glow-primary-color: #89b4fa;
+    --glow-secondary-color: #fab387;
+    --glow-accent-color: #a6e3a1;
+    --glow-special-color: #f5c2e7;
+    --glow-base-color: #bac2de;
+    --glow-char-color: #cba6f7;
+    --glow-comment-color: #6c7086;
+    --glow-counter-color: #f38ba8;
+    --glow-selected-color: #585b7040;
 }`,
 
   /** Empty string because we don't append any theming to the syntax styles. */

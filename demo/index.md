@@ -75,8 +75,8 @@ const user: User = new UserAccount("Murphy", 1);
 ```
 
 It's also easy to create themes that complement a brand color. For example, if
-your brand color is [mint], then you can create a monochromatic theme that uses
-different shades of your brand color:
+your brand color is `#8FDFD4`, then you can create a monochromatic theme that
+uses different shades of your brand color:
 
 ```theme-mint
 // user interface
