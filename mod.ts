@@ -290,9 +290,14 @@ function crudeMinify(text: string) {
 }
 
 /** a Lume plugin that adds syntax highlighting with Nueglow.  */
-export default function (userOptions?: Options): Plugin {
-  // Merge userOptions into DEFAULT_OPTIONS with a spread operator.
-  const opt = { ...DEFAULT_OPTIONS, userOptions };
+export default function (opt?: Options): Plugin {
+  const cssMode = opt?.css ?? DEFAULT_OPTIONS.css;
+  const cssPath = opt?.cssPath ?? DEFAULT_OPTIONS.cssPath;
+  const minifyCSS = opt?.minifyCSS ?? DEFAULT_OPTIONS.minifyCSS;
+  const theme = opt?.theme ?? DEFAULT_OPTIONS.theme;
+  const prefix = opt?.prefix ?? DEFAULT_OPTIONS.prefix;
+  const mark = opt?.mark ?? DEFAULT_OPTIONS.mark;
+  const numbered = opt?.numbered ?? DEFAULT_OPTIONS.numbered;
 
   return (site: Site) => {
     site.process([".html"], (pages: Page[]) => {
@@ -315,9 +320,9 @@ export default function (userOptions?: Options): Plugin {
             preElement.setAttribute("glow", "");
             preElement.innerHTML = glow(codeElement.innerText, {
               language,
-              prefix: opt.prefix,
-              mark: opt.mark,
-              numbered: opt.numbered,
+              prefix,
+              mark,
+              numbered,
             });
           } catch (error) {
             console.warn(`[nueglow] Error in ${page.sourcePath}`, error);
@@ -326,21 +331,21 @@ export default function (userOptions?: Options): Plugin {
       }
     });
 
-    const addCSS = opt.css !== "manual" && opt.css !== false;
+    const addCSS = cssMode !== "manual" && cssMode !== false;
     if (addCSS) {
-      let cssText = GLOW_SYNTAX_CSS + GLOW_THEMES[opt.theme ?? "none"];
+      let cssText = GLOW_SYNTAX_CSS + GLOW_THEMES[theme ?? "none"];
 
-      if (opt.minifyCSS) {
+      if (minifyCSS) {
         cssText = crudeMinify(cssText);
       }
 
-      if (opt.css === "file") {
+      if (cssMode === "file") {
         // Put cssText in a new file at cssPath
         site.page({
-          url: opt.cssPath,
+          url: cssPath,
           content: cssText,
         });
-      } else if (opt.css === "inline") {
+      } else if (cssMode === "inline") {
         // Put cssText in a <style> block in the <head> of every page that uses
         // glow.
         site.process([".html"], (pages) => {
