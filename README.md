@@ -17,19 +17,19 @@ site.use(nueglow());
 export default site;
 ```
 
-```html
-<!-- index.vto -->
-<p>Rendered Output:</p>
-<pre>
-  <code class="language-ts">
+````md
+<!-- index.md -->
+
+Rendered Output:
+
+```ts
 function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
   return fibonacci(num - 1) + fibonacci(num - 2);
 }
-  </code>
-</pre>
 ```
+````
 
 ![Screenshot of a Javascript fibonacci function highlighted with a dark theme with the text 'Rendered Output:' above](./.github/quickstart_screenshot.png)
 
@@ -40,13 +40,9 @@ what theme (if any) to use, and how much of Nueglow's
 [special syntax](https://nuejs.org/docs/syntax-highlighting) to enable.
 
 ```ts
-import lume from "lume/mod.ts";
-import {
-  default as nueglow,
-  type Options as NueglowOptions,
-} from "https://cdn.jsdelivr.net/gh/ethmarks/lume_nueglow/mod.ts";
+import { type Options } from "https://cdn.jsdelivr.net/gh/ethmarks/lume_nueglow/mod.ts";
 
-const opt: NueglowOptions = {
+const opt: Options = {
   /**
    * The CSS output mode.
    *
@@ -113,10 +109,6 @@ const opt: NueglowOptions = {
    */
   mark: true,
 };
-
-site.use(nueglow(opt));
-
-export default site;
 ```
 
 ## Themes
@@ -209,7 +201,7 @@ snippets from the nueglow documentation.
 
 ### Lume
 
-`lume_nueflow` imports a few types from [Lume](https://lume.land/) and uses its
+`lume_nueglow` imports a few types from [Lume](https://lume.land/) and uses its
 [excellent plugin system](https://lume.land/docs/advanced/plugins/).
 
 ### Catppuccin
