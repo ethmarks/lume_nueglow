@@ -175,6 +175,10 @@ to `manual`), you can define your own syntax styles. A guide on how to do this
 is available
 [here](https://nuejs.org/docs/syntax-highlighting#styling-with-css).
 
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## Credits
 
 ### ArnavK-09
@@ -199,7 +203,7 @@ the first place.
 
 ### NueJS
 
-`lume_nueglow` uses the [`nue-glow`](npmjs.com/package/nue-glow) package
+`lume_nueglow` uses the [`nue-glow`](https://npmjs.com/package/nue-glow) package
 developed by the NueJS team. I also used some of the styles, themes, and example
 snippets from the nueglow documentation.
 
@@ -208,7 +212,7 @@ snippets from the nueglow documentation.
 `lume_nueflow` imports a few types from [Lume](https://lume.land/) and uses its
 [excellent plugin system](https://lume.land/docs/advanced/plugins/).
 
-### Catpppuccin
+### Catppuccin
 
 The included `catppuccin` theme was made by me, but I used the
 [Catppuccin palette](https://catppuccin.com/palette/) as reference.
