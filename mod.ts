@@ -56,14 +56,14 @@ export interface Options {
   numbered?: boolean;
 
   /**
-   * Whether to parse diff prefixes (+/-) and callouts (>) in neuglow.
+   * Whether to parse diff prefixes (+/-) and callouts (>) in nueglow.
    *
    * Default is true.
    */
   prefix?: boolean;
 
   /**
-   * Whether to parse marking (•foo•) and highlighting (••foo••) in neuglow.
+   * Whether to parse marking (•foo•) and highlighting (••foo••) in nueglow.
    *
    * Default is true.
    */
