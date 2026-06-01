@@ -1,0 +1,15 @@
+{
+  "name": "lume_nueglow",
+  "version": "0.0.1",
+  "exports": "./mod.ts",
+  "license": "MIT",
+  "imports": {
+    "lume/": "https://cdn.jsdelivr.net/gh/lumeland/lume@3.2.6/"
+  },
+  "lint": {
+    "rules": {
+      "exclude": ["no-import-prefix", "require-await"]
+    }
+  },
+  "lock": false
+}
