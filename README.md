@@ -1,5 +1,9 @@
 # lume_nueglow
 
+[![Demo](https://img.shields.io/badge/demo-live-green)](https://ethmarks.github.io/lume_nueglow/)
+[![GitHub](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/ethmarks/lume_nueglow)
+[![jsDelivr](https://img.shields.io/badge/jsDelivr-cdn-orange?logo=jsdelivr)](https://www.jsdelivr.com/package/gh/ethmarks/lume_nueglow)
+
 This is a [Lume](https://lume.land) plugin to add support for
 [Nueglow](https://nuejs.org/docs/nueglow).
 
