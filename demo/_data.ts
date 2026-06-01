@@ -8,8 +8,6 @@ const snippetFiles = [
   "ruby.rb",
   "kotlin.kt",
   "svelte.svelte",
-  ".env",
-  "bash.bash",
   "cpp.cpp",
   "css.css",
 ];

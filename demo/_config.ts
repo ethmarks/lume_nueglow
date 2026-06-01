@@ -6,7 +6,9 @@ import collapsiblePlugin from "npm:markdown-it-collapsible@^2.0.2";
 
 const site = lume();
 
-site.use(nueglow({ numbered: true }));
+site.add("styles.css");
+
+site.use(nueglow({ numbered: true, css: "file" }));
 
 site.use(markdown({
   plugins: [

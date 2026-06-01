@@ -5,7 +5,7 @@ import { glow } from "npm:nue-glow@0.2.5";
 import type { default as Site, Plugin } from "lume/core/site.ts";
 import type { Page } from "lume/core/file.ts";
 
-/** Options that specify how to handle nueglow's CSS and how to  */
+/** Plugin Options */
 export interface Options {
   /**
    * The CSS output mode.
