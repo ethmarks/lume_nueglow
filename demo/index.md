@@ -7,27 +7,31 @@ layout: layout.vto
 This is a [Lume](https://lume.land) plugin to add support for
 [Nueglow](https://nuejs.org/docs/nueglow).
 
-For example, here's the
-[left-pad](https://en.wikipedia.org/wiki/Npm_left-pad_incident) code,
-highlighted with Nueglow via this plugin.
+For example, here's a quickstart, highlighted with Nueglow via this plugin.
 
-```js
-module.exports = leftpad;
+```ts
+// _config.ts
+import lume from "https://cdn.jsdelivr.net/gh/lumeland/lume/mod.ts";
+import nueglow from "https://cdn.jsdelivr.net/gh/ethmarks/lume_nueglow/mod.ts";
 
-function leftpad(str, len, ch) {
-  str = String(str);
+const site = lume();
 
-  var i = -1;
+site.use(nueglow());
 
-  ch || (ch = " ");
-  len = len - str.length;
+export default site;
+```
 
-  while (++i < len) {
-    str = ch + str;
-  }
-
-  return str;
+```html
+// index.vto
+<pre>
+  <code class="language-js">
+function fibonacci(num) {
+  if (num == 1) return 0;
+  if (num == 2) return 1;
+  return fibonacci(num - 1) + fibonacci(num - 2);
 }
+  </code>
+</pre>
 ```
 
 ## Themes
@@ -57,21 +61,11 @@ The example above is a [Catppuccin](https://catppuccin.com/)-inspired theme,
 which you can see below:
 
 ```theme-catppuccin
-// user interface
-interface User { name: string;  id: number; }
-
-// account interface
-class UserAccount {
-  name: string;
-  id: number;
-
-  constructor(name: string, id: number) {
-    this.name = name;
-    this.id = id;
-  }
+function fibonacci(num) {
+  if (num == 1) return 0;
+  if (num == 2) return 1;
+  return fibonacci(num - 1) + fibonacci(num - 2);
 }
-
-const user: User = new UserAccount("Murphy", 1);
 ```
 
 It's also easy to create themes that complement a brand color. For example, if
@@ -79,41 +73,21 @@ your brand color is `#8FDFD4`, then you can create a monochromatic theme that
 uses different shades of your brand color:
 
 ```theme-mint
-// user interface
-interface User { name: string;  id: number; }
-
-// account interface
-class UserAccount {
-  name: string;
-  id: number;
-
-  constructor(name: string, id: number) {
-    this.name = name;
-    this.id = id;
-  }
+function fibonacci(num) {
+  if (num == 1) return 0;
+  if (num == 2) return 1;
+  return fibonacci(num - 1) + fibonacci(num - 2);
 }
-
-const user: User = new UserAccount("Murphy", 1);
 ```
 
 Here's a theme that I created by lazily combining random pastel colors:
 
 ```theme-rainbow
-// user interface
-interface User { name: string;  id: number; }
-
-// account interface
-class UserAccount {
-  name: string;
-  id: number;
-
-  constructor(name: string, id: number) {
-    this.name = name;
-    this.id = id;
-  }
+function fibonacci(num) {
+  if (num == 1) return 0;
+  if (num == 2) return 1;
+  return fibonacci(num - 1) + fibonacci(num - 2);
 }
-
-const user: User = new UserAccount("Murphy", 1);
 ```
 
 _The CSS for all the themes above is available at [/themes.css](themes.css)._
@@ -122,7 +96,7 @@ _The CSS for all the themes above is available at [/themes.css](themes.css)._
 
 Nueglow supports every programming language because
 [it uses heuristics rather than grammars](https://nuejs.org/docs/nueglow#:~:text=Language-agnostic,works%20across%20all%20programming%20languages.).
-If it looks like code and uses code-y word like `if` and `return`, Nueglow can
+If it looks like code and uses code-y words like `if` and `return`, Nueglow can
 highlight it.
 
 Here are a bunch of example snippets from different programming languages.
