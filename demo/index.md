@@ -31,7 +31,7 @@ For example, here's a quickstart, highlighted with Nueglow via this plugin.
 ```ts
 // _config.ts
 import lume from "https://cdn.jsdelivr.net/gh/lumeland/lume/mod.ts";
-import nueglow from "https://cdn.jsdelivr.net/gh/ethmarks/lume_nueglow/mod.ts";
+import nueglow from "https://cdn.jsdelivr.net/gh/ethmarks/lume_nueglow@v1.1.0/mod.ts";
 
 const site = lume();
 
