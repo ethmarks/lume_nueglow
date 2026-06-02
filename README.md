@@ -12,7 +12,7 @@ This is a [Lume](https://lume.land) plugin to add support for
 ```ts
 // _config.ts
 import lume from "https://cdn.jsdelivr.net/gh/lumeland/lume/mod.ts";
-import nueglow from "https://cdn.jsdelivr.net/gh/ethmarks/lume_nueglow@v1.1.0/mod.ts";
+import nueglow from "https://cdn.jsdelivr.net/gh/ethmarks/lume_nueglow@v1.1.1/mod.ts";
 
 const site = lume();
 
@@ -44,7 +44,7 @@ what theme (if any) to use, and how much of Nueglow's
 [special syntax](https://nuejs.org/docs/syntax-highlighting) to enable.
 
 ```ts
-import { type Options } from "https://cdn.jsdelivr.net/gh/ethmarks/lume_nueglow@v1.1.0/mod.ts";
+import { type Options } from "https://cdn.jsdelivr.net/gh/ethmarks/lume_nueglow@v1.1.1/mod.ts";
 
 const opt: Options = {
   /**
