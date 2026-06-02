@@ -75,23 +75,6 @@ blockquote {
     margin-bottom: 1.5rem;
 }
 
-main > pre {
-    margin-block: 1rem;
-    border-radius: 1.5rem;
-}
-
-p > code {
-    font-family: "Red Hat Mono", monospace;
-    font-size: 1.1rem;
-    background: #111729;
-    padding: 0.2rem 0.3rem;
-    border-radius: 0.5rem;
-}
-
-.mint {
-    color: #8fdfd4;
-}
-
 blockquote {
     border-left: 2px solid #ccc;
     padding-left: 1.5rem;

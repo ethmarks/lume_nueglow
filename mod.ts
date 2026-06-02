@@ -82,7 +82,7 @@ export interface Options {
  * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/markers.css.
  * However, they lack the ::before styles for <ins> and <del> tags.
  */
-const GLOW_SYNTAX_CSS = `
+const SYNTAX_CSS = `
   [glow] {
     background-color: var(--glow-bg-color);
     padding: var(--glow-padding);
@@ -206,9 +206,9 @@ const GLOW_SYNTAX_CSS = `
 
 /**
  * Themes that specify values for each of the the CSS Custom Properties that
- * Glow uses.
+ * Nueglow uses.
  */
-const GLOW_THEMES = {
+export const THEMES = {
   /** https://nuejs.org/glow-demo/dark.css */
   dark: `[glow] {
   --glow-bg-color: #111729;
@@ -242,18 +242,50 @@ const GLOW_THEMES = {
 
   /** Made by me based on https://catppuccin.com/palette/ */
   catppuccin: `[glow] {
-    --glow-bg-color: #1e1e2e;
-    --glow-font-color: #cdd6f4;
-    --glow-primary-color: #89b4fa;
-    --glow-secondary-color: #fab387;
-    --glow-accent-color: #a6e3a1;
-    --glow-special-color: #f5c2e7;
-    --glow-error-color: red;
-    --glow-base-color: #bac2de;
-    --glow-char-color: #cba6f7;
-    --glow-comment-color: #6c7086;
-    --glow-counter-color: #f38ba8;
-    --glow-selected-color: #585b7040;
+  --glow-bg-color: #1e1e2e;
+  --glow-font-color: #cdd6f4;
+  --glow-primary-color: #89b4fa;
+  --glow-secondary-color: #fab387;
+  --glow-accent-color: #a6e3a1;
+  --glow-special-color: #f5c2e7;
+  --glow-error-color: red;
+  --glow-base-color: #bac2de;
+  --glow-char-color: #cba6f7;
+  --glow-comment-color: #6c7086;
+  --glow-counter-color: #f38ba8;
+  --glow-selected-color: #585b7040;
+}`,
+
+  /** Made by me */
+  mint: `[glow] {
+  --glow-bg-color: #111729;
+  --glow-font-color: #f0fbf9;
+  --glow-primary-color: #8fdfd4;
+  --glow-secondary-color: #aae7de;
+  --glow-accent-color: #69cebf;
+  --glow-special-color: #c5f0e9;
+  --glow-error-color: red;
+  --glow-base-color: #52b8a9;
+  --glow-char-color: #3ca294;
+  --glow-comment-color: #4a6360;
+  --glow-counter-color: #2b7a6f;
+  --glow-selected-color: #8fdfd426;
+}`,
+
+  /** Made by me */
+  awfulPastel: `[glow] {
+  --glow-bg-color: #0d0f14;
+  --glow-font-color: #f8fafc;
+  --glow-primary-color: #ff5e62;
+  --glow-secondary-color: #ff9900;
+  --glow-accent-color: #38ef7d;
+  --glow-special-color: #00f2fe;
+  --glow-error-color: red;
+  --glow-base-color: #b1a2e3;
+  --glow-char-color: #ec4899;
+  --glow-comment-color: #64748b;
+  --glow-counter-color: #8b5cf6;
+  --glow-selected-color: #00f2fe26;
 }`,
 
   /** Empty string because we don't append any theming to the syntax styles. */
@@ -333,7 +365,7 @@ export default function (opt?: Options): Plugin {
 
     const addCSS = cssMode !== "manual" && cssMode !== false;
     if (addCSS) {
-      let cssText = GLOW_SYNTAX_CSS + GLOW_THEMES[theme ?? "none"];
+      let cssText = SYNTAX_CSS + THEMES[theme ?? "none"];
 
       if (minifyCSS) {
         cssText = crudeMinify(cssText);

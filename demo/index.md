@@ -1,5 +1,20 @@
 ---
 layout: layout.vto
+css: |
+  main > pre {
+    margin-block: 1rem;
+    border-radius: 1.5rem;
+  }
+  p > code {
+    font-family: "Red Hat Mono", monospace;
+    font-size: 1.1rem;
+    background: #111729;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.5rem;
+    }
+  .mint {
+      color: #8fdfd4;
+  }
 ---
 
 # Lume Nueglow Plugin Demo
@@ -66,6 +81,7 @@ The example above is a [Catppuccin](https://catppuccin.com/)-inspired theme,
 which you can see below:
 
 ```theme-catppuccin
+// catppuccin theme
 function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
@@ -75,9 +91,10 @@ function fibonacci(num: number): number {
 
 It's also easy to create themes that complement a brand color. For example, if
 your brand color is `#8FDFD4`, then you can create a monochromatic theme that
-uses different shades of your brand color:
+uses different shades of your brand color.
 
 ```theme-mint
+// mint theme
 function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
@@ -85,9 +102,11 @@ function fibonacci(num: number): number {
 }
 ```
 
-Here's a theme that I created by lazily combining random pastel colors:
+Here's a theme that I created by lazily combining random pastel colors, which I
+call `awfulPastel`:
 
-```theme-rainbow
+```theme-awfulPastel
+// awfulPastel theme
 function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
@@ -95,7 +114,8 @@ function fibonacci(num: number): number {
 }
 ```
 
-_The CSS for all the themes above is available at [/themes.css](themes.css)._
+_A complete list of included themes is available at the [Themes](./themes)
+page._
 
 ## Special Syntax
 
