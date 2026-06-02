@@ -46,8 +46,12 @@ export interface Options {
    * https://nuejs.org/glow-demo/dark.css.
    * * 'light': A light theme sourced from
    * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css.
-   * * 'catppuccin': A dark theme made by me based on
+   * * 'catppuccin': A dark theme adapted by me based on
    * https://catppuccin.com/palette/.
+   * * 'onedark': A dark theme adapted by me based on
+   * https://github.com/Binaryify/OneDark-Pro/.
+   * * 'mint': A monochromatic dark theme made by me.
+   * * 'awfulPastel': a dark theme made (poorly) by me.
    * * 'none': No theme.
    */
   theme?: "dark" | "light" | "catppuccin" | "none";
@@ -272,6 +276,25 @@ export const THEMES: Theme[] = [
 }`,
   },
   {
+    /** Based on https://github.com/Binaryify/OneDark-Pro */
+    name: "onedark",
+    attribution: "Binaryify (adapted by Ethan Marks)",
+    css: `[glow] {
+  --glow-bg-color: #282c34;
+  --glow-font-color: #abb2bf;
+  --glow-primary-color: #61afef;
+  --glow-secondary-color: #e5c07b;
+  --glow-accent-color: #98c379;
+  --glow-special-color: #c678dd;
+  --glow-error-color: #f44747;
+  --glow-base-color: #abb2bf;
+  --glow-char-color: #d19a66;
+  --glow-comment-color: #5c6370;
+  --glow-counter-color: #4b5263;
+  --glow-selected-color: #3e44517f;
+}`,
+  },
+  {
     name: "mint",
     attribution: "Ethan Marks",
     css: `[glow] {
@@ -399,7 +422,7 @@ export default function (opt?: Options): Plugin {
             console.warn(`[nueglow] Error in ${page.sourcePath}`, error);
           }
         });
-        
+
         if (cssMode === "inline" && cssText) {
           // Put cssText in a <style> block in the <head> of every page that
           // uses glow.

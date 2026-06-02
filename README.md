@@ -86,8 +86,12 @@ const opt: Options = {
    * https://nuejs.org/glow-demo/dark.css.
    * * 'light': A light theme sourced from
    * https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css.
-   * * 'catppuccin': A dark theme made by me based on
+   * * 'catppuccin': A dark theme adapted by me based on
    * https://catppuccin.com/palette/.
+   * * 'onedark': A dark theme adapted by me based on
+   * https://github.com/Binaryify/OneDark-Pro/.
+   * * 'mint': A monochromatic dark theme made by me.
+   * * 'awfulPastel': a dark theme made (poorly) by me.
    * * 'none': No theme.
    */
   theme: "dark",
@@ -127,7 +131,7 @@ Nueglow uses a classless design system which makes it extremely easy to style.
 `lume_nueglow` comes with a few themes by default, which you can select via the
 `theme` option.
 
-![Screenshot of five of the same Javascript fibonacci function, each highlighted with a different theme: dark, light, catppuccin, mint, and awfulPastel](./.github/themes.png)
+![Screenshot of five of the same Javascript fibonacci function, each highlighted with a different theme: dark, light, catppuccin, onedark, mint, and awfulPastel](./.github/themes.png)
 
 ### Custom Themes
 
@@ -175,12 +179,12 @@ encountered it because I was trying to add Nueglow to one of my Lume sites and
 was checking to see if any plugins already existed.
 
 However, because `lume_glow`
-[used hardcoded `githubusercontent` links](https://github.com/ArnavK-09/lume_glow/blob/main/plugin.ts#L27:L31)
+[uses hardcoded `githubusercontent` links](https://github.com/ArnavK-09/lume_glow/blob/main/plugin.ts#L27:L31)
 that have since stopped working, it injects every page with
 `<style>404: Not Foundpre { overflow-x: auto }</style>` and not the actual
 styles. The hardcoded links can't be configured in any way, nor can you even
 disable the `<style>` injection. I considered submitting a PR, but the plugin
-didn't seem to be actively maintained.
+doesn't seem to be actively maintained.
 
 Instead, I decided to make my own plugin, borrowing the basic structure of
 ArnavK-09's plugin but expanding it significantly. I took the opportunity to
@@ -200,8 +204,14 @@ snippets from the nueglow documentation.
 
 ### Catppuccin
 
-The included `catppuccin` theme was made by me, but I used the
+The included `catppuccin` theme was adapted by me, but I used the
 [Catppuccin palette](https://catppuccin.com/palette/) as reference.
+
+### OneDark
+
+The included `onedark` theme was adapted by me, but I used the
+[OneDark-Pro VSCode theme](https://github.com/Binaryify/OneDark-Pro/) made by
+Binaryify as reference.
 
 ## License
 
