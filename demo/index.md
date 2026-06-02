@@ -26,7 +26,7 @@ css: |
 This is a [Lume](https://lume.land) plugin to add support for
 [Nueglow](https://nuejs.org/docs/nueglow).
 
-For example, here's a quickstart, highlighted with Nueglow via this plugin.
+For example, here's a quickstart script, highlighted with this plugin.
 
 ```ts
 // _config.ts
@@ -39,20 +39,6 @@ site.use(nueglow());
 
 export default site;
 ```
-
-````md
-<!-- index.md -->
-
-Rendered Output:
-
-```ts
-function fibonacci(num: number): number {
-  if (num == 1) return 0;
-  if (num == 2) return 1;
-  return fibonacci(num - 1) + fibonacci(num - 2);
-}
-```
-````
 
 ## Themes
 
@@ -119,7 +105,7 @@ Nueglow has some [special syntax](https://nuejs.org/docs/syntax-highlighting)
 for drawing attention to specific selections and lines.
 
 If you wrap a selection in single bullet markers (e.g. `•text•`), Nueglow will
-surround it in `<mark>` tags. For example, look `fibonacci(num - 1)` is
+surround it in `<mark>` tags. For example, look how `fibonacci(num - 1)` is
 highlighted in the example below.
 
 ```ts
@@ -176,10 +162,11 @@ Nueglow supports every programming language because
 If it looks like code and uses code-y words like `if` and `return`, Nueglow can
 highlight it.
 
-Here are a bunch of example snippets from different programming languages.
+Here are a bunch of example snippets (sourced from
+[here](https://github.com/nuejs/nue/blob/master/packages/nueglow/test/generate.js))
+for many different programming languages.
 
 [snippets]
 
-_Snippets are from the official [Nueglow demo](https://nuejs.org/glow-demo/),
-the source of which is available here:
-<https://github.com/nuejs/nue/blob/master/packages/nueglow/test/generate.js>._
+_This demo is styled with a modified version of
+[tufte.css](https://github.com/edwardtufte/tufte-css)._
