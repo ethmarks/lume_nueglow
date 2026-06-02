@@ -127,17 +127,7 @@ Nueglow uses a classless design system which makes it extremely easy to style.
 `lume_nueglow` comes with a few themes by default, which you can select via the
 `theme` option.
 
-Dark:
-
-![Screenshot of a Javascript fibonacci function highlighted with a dark theme](./.github/dark.png)
-
-Light:
-
-![Screenshot of a Javascript fibonacci function highlighted with a light theme](./.github/light.png)
-
-Catppuccin:
-
-![Screenshot of a Javascript fibonacci function highlighted with a catppuccin theme](./.github/catppuccin.png)
+![Screenshot of five of the same Javascript fibonacci function, each highlighted with a different theme: dark, light, catppuccin, mint, and awfulPastel](./.github/themes.png)
 
 ### Custom Themes
 
