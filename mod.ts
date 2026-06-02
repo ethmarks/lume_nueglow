@@ -54,7 +54,14 @@ export interface Options {
    * * 'awfulPastel': a dark theme made (poorly) by me.
    * * 'none': No theme.
    */
-  theme?: "dark" | "light" | "catppuccin" | "none";
+  theme?:
+    | "dark"
+    | "light"
+    | "catppuccin"
+    | "onedark"
+    | "mint"
+    | "awfulPastel"
+    | "none";
 
   /**
    * Whether to enable line numbering.
