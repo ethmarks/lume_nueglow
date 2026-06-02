@@ -255,7 +255,7 @@ export const THEMES: Theme[] = [
   {
     /** based on https://catppuccin.com/palette/ */
     name: "catppuccin",
-    attribution: "Ethan Marks",
+    attribution: "Catppuccin (adapted by Ethan Marks)",
     css: `[glow] {
   --glow-bg-color: #1e1e2e;
   --glow-font-color: #cdd6f4;
