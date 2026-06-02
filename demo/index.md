@@ -81,7 +81,6 @@ The example above is a [Catppuccin](https://catppuccin.com/)-inspired theme,
 which you can see below:
 
 ```theme-catppuccin
-// catppuccin theme
 function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
@@ -94,7 +93,6 @@ your brand color is `#8FDFD4`, then you can create a monochromatic theme that
 uses different shades of your brand color.
 
 ```theme-mint
-// mint theme
 function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;
@@ -102,11 +100,9 @@ function fibonacci(num: number): number {
 }
 ```
 
-Here's a theme that I created by lazily combining random pastel colors, which I
-call `awfulPastel`:
+Here's a theme that I created by lazily combining random pastel colors:
 
 ```theme-awfulPastel
-// awfulPastel theme
 function fibonacci(num: number): number {
   if (num == 1) return 0;
   if (num == 2) return 1;

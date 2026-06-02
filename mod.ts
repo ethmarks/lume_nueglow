@@ -349,6 +349,28 @@ export default function (opt?: Options): Plugin {
   const numbered = opt?.numbered ?? DEFAULT_OPTIONS.numbered;
 
   return (site: Site) => {
+    let cssText: string = "";
+
+    const addCSS = cssMode !== "manual" && cssMode !== false;
+    if (addCSS) {
+      const themeCSS = theme === "none"
+        ? ""
+        : THEMES.find((t) => t.name === theme)?.css || "";
+      cssText = SYNTAX_CSS + themeCSS;
+
+      if (minifyCSS) {
+        cssText = crudeMinify(cssText);
+      }
+
+      if (cssMode === "file") {
+        // Put cssText in a new file at cssPath
+        site.page({
+          url: cssPath,
+          content: cssText,
+        });
+      }
+    }
+
     site.process([".html"], (pages: Page[]) => {
       for (const page of pages) {
         const { document } = page;
@@ -377,37 +399,17 @@ export default function (opt?: Options): Plugin {
             console.warn(`[nueglow] Error in ${page.sourcePath}`, error);
           }
         });
+        
+        if (cssMode === "inline" && cssText) {
+          // Put cssText in a <style> block in the <head> of every page that
+          // uses glow.
+          if (page.document?.querySelector("[glow]")) {
+            const style = page.document.createElement("style");
+            style.textContent = cssText;
+            page.document.head.appendChild(style);
+          }
+        }
       }
     });
-
-    const addCSS = cssMode !== "manual" && cssMode !== false;
-    if (addCSS) {
-      let cssText = SYNTAX_CSS + THEMES.find((t) => t.name === theme)?.css ||
-        "";
-
-      if (minifyCSS) {
-        cssText = crudeMinify(cssText);
-      }
-
-      if (cssMode === "file") {
-        // Put cssText in a new file at cssPath
-        site.page({
-          url: cssPath,
-          content: cssText,
-        });
-      } else if (cssMode === "inline") {
-        // Put cssText in a <style> block in the <head> of every page that uses
-        // glow.
-        site.process([".html"], (pages) => {
-          for (const page of pages) {
-            if (page.document?.querySelector("[glow]")) {
-              const style = page.document.createElement("style");
-              style.textContent = cssText;
-              page.document.head.appendChild(style);
-            }
-          }
-        });
-      }
-    }
   };
 }
