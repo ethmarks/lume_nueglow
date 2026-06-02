@@ -204,13 +204,22 @@ const SYNTAX_CSS = `
   }
 `;
 
+export interface Theme {
+  name: string;
+  attribution: string;
+  css: string;
+}
+
 /**
  * Themes that specify values for each of the the CSS Custom Properties that
  * Nueglow uses.
  */
-export const THEMES = {
-  /** https://nuejs.org/glow-demo/dark.css */
-  dark: `[glow] {
+export const THEMES: Theme[] = [
+  {
+    /* https://nuejs.org/glow-demo/dark.css */
+    name: "dark",
+    attribution: "NueJS",
+    css: `[glow] {
   --glow-bg-color: #111729;
   --glow-font-color: #e2e8f0;
   --glow-primary-color: #7dd3fc;
@@ -224,9 +233,12 @@ export const THEMES = {
   --glow-counter-color: #475569;
   --glow-selected-color: #2dd4bf26;
 }`,
-
-  /** https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css */
-  light: `[glow] {
+  },
+  {
+    /* https://github.com/nuejs/nue/blob/master/packages/nueglow/css/light.css */
+    name: "light",
+    attribution: "NueJS",
+    css: `[glow] {
   --glow-bg-color: #f9f9f9;
   --glow-base-color: #555;
   --glow-primary-color: #0068d6;
@@ -239,9 +251,12 @@ export const THEMES = {
   --glow-counter-color: #bbb;
   --glow-marked-color: #51c6fe29;
 }`,
-
-  /** Made by me based on https://catppuccin.com/palette/ */
-  catppuccin: `[glow] {
+  },
+  {
+    /** based on https://catppuccin.com/palette/ */
+    name: "catppuccin",
+    attribution: "Ethan Marks",
+    css: `[glow] {
   --glow-bg-color: #1e1e2e;
   --glow-font-color: #cdd6f4;
   --glow-primary-color: #89b4fa;
@@ -255,9 +270,11 @@ export const THEMES = {
   --glow-counter-color: #f38ba8;
   --glow-selected-color: #585b7040;
 }`,
-
-  /** Made by me */
-  mint: `[glow] {
+  },
+  {
+    name: "mint",
+    attribution: "Ethan Marks",
+    css: `[glow] {
   --glow-bg-color: #111729;
   --glow-font-color: #f0fbf9;
   --glow-primary-color: #8fdfd4;
@@ -271,9 +288,11 @@ export const THEMES = {
   --glow-counter-color: #2b7a6f;
   --glow-selected-color: #8fdfd426;
 }`,
-
-  /** Made by me */
-  awfulPastel: `[glow] {
+  },
+  {
+    name: "awfulPastel",
+    attribution: "Ethan Marks",
+    css: `[glow] {
   --glow-bg-color: #0d0f14;
   --glow-font-color: #f8fafc;
   --glow-primary-color: #ff5e62;
@@ -287,10 +306,8 @@ export const THEMES = {
   --glow-counter-color: #8b5cf6;
   --glow-selected-color: #00f2fe26;
 }`,
-
-  /** Empty string because we don't append any theming to the syntax styles. */
-  none: "",
-};
+  },
+];
 
 /** The default options */
 const DEFAULT_OPTIONS: Options = {
@@ -365,7 +382,8 @@ export default function (opt?: Options): Plugin {
 
     const addCSS = cssMode !== "manual" && cssMode !== false;
     if (addCSS) {
-      let cssText = SYNTAX_CSS + THEMES[theme ?? "none"];
+      let cssText = SYNTAX_CSS + THEMES.find((t) => t.name === theme)?.css ||
+        "";
 
       if (minifyCSS) {
         cssText = crudeMinify(cssText);
