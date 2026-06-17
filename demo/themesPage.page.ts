@@ -1,9 +1,8 @@
 import { THEMES } from "../mod.ts";
 
 export const layout = "layout.vto";
+export const header = { enabled: false };
 export const url = "/themes.html";
-
-export const css = `pre{border-radius: 0;}`;
 
 const snippet = `function fibonacci(num: number): number {
   if (num == 1) return 0;
@@ -26,7 +25,7 @@ ${snippet}
 
 export const content = `
 <h1>Themes</h1>
-<div class="themes">
+<section class="themeList">
 ${themeHTML}
-</div>
+</section>
 `;
