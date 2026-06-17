@@ -1,19 +1,12 @@
 import lume from "lume/mod.ts";
-import nueglow from "../mod.ts";
+import theme from "theme/mod.ts";
 
-import markdown from "lume/plugins/markdown.ts";
-import collapsiblePlugin from "npm:markdown-it-collapsible@^2.0.2";
+const site = lume({
+  location: new URL("https://ethmarks.github.io/lume_nueglow/"),
+});
 
-const site = lume();
+site.add("demo.css");
 
-site.add("tufte.css");
-
-site.use(nueglow({ numbered: true, css: "file" }));
-
-site.use(markdown({
-  plugins: [
-    collapsiblePlugin,
-  ],
-}));
+site.use(theme({ nueglow: { numbered: true, theme: "dark" } }));
 
 export default site;

@@ -1,27 +1,16 @@
 ---
+title: Lume Nueglow Plugin Demo
+description: This is a Lume plugin to add support for Nueglow.
 layout: layout.vto
-css: |
-  main > pre {
-    margin-block: 1rem;
-    border-radius: 1.5rem;
-  }
-  p > code {
-    font-family: "Red Hat Mono", monospace;
-    font-size: 1.1rem;
-    background: #111729;
-    padding: 0.2rem 0.3rem;
-    border-radius: 0.5rem;
-    }
-  .mint {
-      color: #8fdfd4;
-  }
+header:
+  enabled: false
 ---
 
 # Lume Nueglow Plugin Demo
 
-[![Demo](https://img.shields.io/badge/demo-live-green)](https://ethmarks.github.io/lume_nueglow/)
-[![GitHub](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/ethmarks/lume_nueglow)
-[![jsDelivr](https://img.shields.io/badge/jsDelivr-cdn-orange?logo=jsdelivr)](https://www.jsdelivr.com/package/gh/ethmarks/lume_nueglow)
+<p class="subtitle"><a href="https://ethmarks.github.io/lume_nueglow/"><img src="https://img.shields.io/badge/demo-live-green" alt="Demo"></a>
+<a href="https://github.com/ethmarks/lume_nueglow"><img src="https://img.shields.io/badge/github-repo-blue?logo=github" alt="GitHub"></a>
+<a href="https://www.jsdelivr.com/package/gh/ethmarks/lume_nueglow"><img src="https://img.shields.io/badge/jsDelivr-cdn-orange?logo=jsdelivr" alt="jsDelivr"></a></p>
 
 This is a [Lume](https://lume.land) plugin to add support for
 [Nueglow](https://nuejs.org/docs/nueglow).
@@ -162,11 +151,8 @@ Nueglow supports every programming language because
 If it looks like code and uses code-y words like `if` and `return`, Nueglow can
 highlight it.
 
-Here are a bunch of example snippets (sourced from
-[here](https://github.com/nuejs/nue/blob/master/packages/nueglow/test/generate.js))
+Here are a bunch of example snippets[^Sourced from
+<https://github.com/nuejs/nue/blob/master/packages/nueglow/test/generate.js>.]
 for many different programming languages.
 
 [snippets]
-
-_This demo is styled with a modified version of
-[tufte.css](https://github.com/edwardtufte/tufte-css)._

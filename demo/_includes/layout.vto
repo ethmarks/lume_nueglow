@@ -1,22 +1,11 @@
-<!doctype html>
+---
+layout: layouts/base.vto
+extraHead: |
+  <link rel='stylesheet' href='./themes.css'>
+  <link rel='stylesheet' href='./demo.css'>
+---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lume Nueglow Plugin Demo</title>
-    <link rel='stylesheet' href='./glow.css'>
-    <link rel='stylesheet' href='./tufte.css'>
-    <link rel='stylesheet' href='./themes.css'>
-    <style>{{ css }}</style>
-  </head>
-
-  <body>
-    <main>
-        {{ content
-        |> replaceAll("[snippets]", await comp.snippets() )
-        |> replaceAll("<code>#8FDFD4</code>", '<span class="mint">⬤</span><code class="mint">#8FDFD4</code>' )
-        }}
-    </main>
-  </body>
-</html>
+{{ content
+|> replaceAll("[snippets]", await comp.snippets() )
+|> replaceAll("<code>#8FDFD4</code>", '<span class="mint">⬤</span><code class="mint">#8FDFD4</code>' )
+}}
